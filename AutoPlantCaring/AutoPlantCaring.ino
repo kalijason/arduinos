@@ -10,7 +10,7 @@ int val;
 bool tooDry = false;
 const int TOO_DRY_VALUE = 200;
 const int TOO_WET_VALUE = 350;
-char  str[8]; 
+char  str[8];
 
 void setup()
 {
@@ -24,15 +24,15 @@ void setup()
 
 void loop ()
 {
-  val = analogRead(MOISTURE_SENSOR); 
+  val = analogRead(MOISTURE_SENSOR);
   if (val < TOO_DRY_VALUE) {
     tooDry = true;
-  } 
+  }
 
   if (val > TOO_WET_VALUE) {
     tooDry = false;
   }
-  
+
   serialPrint();
   drawLCD();
   delay(1000);
@@ -43,17 +43,17 @@ void serialPrint() {
   if (tooDry) {
     Serial.println("TOO DRY        ");
   } else {
-    Serial.println("GOOD");
+    Serial.println("GOOD   ");
   }
 }
 void drawLCD()
 {
-  lcd.setCursor(0, 0); 
+  lcd.setCursor(0, 0);
   lcd.print("Moisture Value:");
-  
-  sprintf(str, "%5d", val);  
+
+  sprintf(str, "%5d", val);
   lcd.print(str);
-  lcd.setCursor(0, 2); 
+  lcd.setCursor(0, 2);
   if (tooDry) {
     lcd.print("TOO DRY    ");
     sprinkle ();
